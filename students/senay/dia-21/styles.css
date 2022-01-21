@@ -1,0 +1,14 @@
+.boxes {
+    background-color: #F47732;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+}
+
+.box-par {
+    background-color: #F47732;
+}
+
+.box-impar {
+    background-color: #1148F3;
+}
