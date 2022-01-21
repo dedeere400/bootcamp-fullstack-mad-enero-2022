@@ -4,7 +4,10 @@
 // let i = prompt('Imprimir los primeros 10 numeros');
 // let save = i;
 
-for (i = 1; i < 10; i++) {
+for (i = 1; i <= 10; i++) {
     document.write(i);
 
 }
+
+// Crear una página web que pinte por pantalla separado por comas las primeras 100 potencias de dos. 
+// Ejemplo: 1,2,4,8,16,32,64,...
