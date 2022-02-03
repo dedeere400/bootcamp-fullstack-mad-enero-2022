@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
 </head>
+
 <body>
     <style>
         .row {
             display: flex;
             margin-bottom: 5px;
         }
-
-        .circle{
+        
+        .circle {
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background-color: greenyellow;
         }
-
-        .row:first-child > .circle,
-        .row:last-child > .circle,
+        
+        .row:first-child>.circle,
+        .row:last-child>.circle,
         .circle:first-child,
         .circle:last-child {
             background-color: red;
         }
-
     </style>
     <script>
         const n = parseInt(prompt('Introduzca un número'));
@@ -42,20 +43,21 @@
          * </div>
          * */
 
-         function drawBoard(n){
-             let htmlOutput = `<div>`;
-             for(let i=0; i<n; i++){
-                htmlOutput+=`<div class="row">`
-                for(let j=0; j<n; j++){
-                    htmlOutput+=`<div class="circle"></div>`;
+        function drawBoard(n) {
+            let htmlOutput = `<div>`;
+            for (let i = 0; i < n; i++) {
+                htmlOutput += `<div class="row">`
+                for (let j = 0; j < n; j++) {
+                    htmlOutput += `<div class="circle"></div>`;
                 }
-                htmlOutput+=`</div>`
-             }
-             htmlOutput+='</div>';
-             document.write(htmlOutput);
-         }
+                htmlOutput += `</div>`
+            }
+            htmlOutput += '</div>';
+            document.write(htmlOutput);
+        }
 
-         drawBoard(n);
-    </script>    
+        drawBoard(n);
+    </script>
 </body>
+
 </html>
