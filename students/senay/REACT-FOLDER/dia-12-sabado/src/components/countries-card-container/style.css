@@ -1,0 +1,9 @@
+
+.CountriesCardContainer {
+    margin-top: 2rem;
+    max-width: 200px;
+    border: 1px solid black;
+}
+.CountriesCardContainer__img {
+    width: 100%;
+}
