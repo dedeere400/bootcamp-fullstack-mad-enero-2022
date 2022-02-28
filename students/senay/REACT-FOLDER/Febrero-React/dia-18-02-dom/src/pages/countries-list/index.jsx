@@ -49,7 +49,7 @@ function CountriesList() {
                         <h5>Su capital es: {c.capital}</h5>
                         <p>{c.iso2}</p>
                         <p>{c.iso3}</p>
-                        <Link to={`/contries/${c.iso3}`}>Ver Detalles</Link>
+                        <Link to={`/contries/${c.iso2}`}>Ver Detalles</Link>
                     </li>
                 ))}
             </ul>
