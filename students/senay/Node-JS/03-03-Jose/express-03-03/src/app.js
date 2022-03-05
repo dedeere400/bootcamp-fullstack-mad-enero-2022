@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import writeFile from 'fs/promises';
+import writeFile, { readFile } from 'fs/promises';
+import { uuid as uuidv4 } from 'uuidv4';
+import { deflateRaw } from 'zlib';
+import { readFileSync, writeFileSync } from 'fs';
 
 
 /**
@@ -52,13 +55,62 @@ app.use(express.json());
 const port = 4000;
 
 
+// app.get('/', (req, res) => {
+//     const data = readFileSync('/', { encoding: 'utf-8' })
+//     console.log(data)
+//     const obj = JSON.parse(data)
+//     res.send(obj)
+// })
+
+
+
 app.get('/', (req, res) => {
-    res.send({ 'name': 'senay' });
+    res.json({ name: 'senay' })
+    res.send('new entry recived')
 })
+
+
+// app.post('/', (req, rea) => {
+//     const { name, lastName, userName, email, img } = req.body;
+//     if (!name || !lastName || !userName || !email || !img) {
+//         res.status(400).send('Entries must have name, lastName, etc...')
+//     }
+//     let newBook = {
+//         name, lastName, userName, email, img
+//     };
+
+//     books.push(newBook);
+//     const jsonBooks = JSON.stringify(books)
+//     writeFileSync('/users.json', jsonBooks, 'utf-8');
+
+//     res.send('received post request')
+// })
+
+
+app.post('/users', (req, res) => {
+    const id = uuidv4()
+    const user = {
+        name: req.body.name,
+        lastName: req.body.lastName,
+        userName: req.body.userName,
+        email: req.body.email,
+        id: id
+    }
+
+
+    const nameJson = readFileSync('./users.json', { encoding: 'utf-8' })
+    const obj = JSON.parse(nameJson)
+    obj.push(user)
+    writeFile('./users.json', JSON.stringify(obj), () => { })
+    res.send('Recibido')
+})
+
 
 app.listen(port, () => {
     console.log(`Listening port ${port}`)
 })
+
+
 
 // 2 Nuestra app almacenará la información en un fichero llamado users.json, la información tendrá la
 // siguiente estructura { id: 1, name: xxx, lastname: xxx, username: xxx, country: xxx, img: xxx }
