@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, accessSync, constants } from 'f
 
 const FILE_PATH = './data/products.json';
 const app = express();
-const port = 4000;
+const port = 4001;
 app.use(express.json()); // esto procesa el body en formato JSON y asi lo puedo leer en la request
 
 // inicializar el archivo si NO existe

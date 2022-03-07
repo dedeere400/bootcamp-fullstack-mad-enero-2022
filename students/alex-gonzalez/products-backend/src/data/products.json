@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Demo product",
+        "description": "Description demo product",
+        "price": 66.6,
+        "id": "7c29eb67-dabc-40ad-b41e-2bacbc1f75b6"
+    },
+    {
+        "name": "Demo product",
+        "description": "Description demo product",
+        "price": 66.6,
+        "id": "b89edde6-5c7e-48a0-aade-5e705ff8c537"
+    }
+]

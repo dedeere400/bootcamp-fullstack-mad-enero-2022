@@ -1,6 +1,6 @@
-import express from 'express';
-import cors from 'cors';
-import writeFile from 'fs/promises';
+// import express from 'express';
+// import cors from 'cors';
+// import writeFile from 'fs/promises';
 
 
 /**
@@ -46,19 +46,69 @@ actualizaremos los datos.
 // Para el Backend nos debemos crear un proyecto en express js el cual llamaremos user api el cual
 // estara levantado el puerto 4000.
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-const port = 4000;
+// const app = express();
+// app.use(cors());
+// app.use(express.json());
+// const port = 4000;
 
 
-app.get('/', (req, res) => {
-    res.send({ 'name': 'senay' });
-})
+// app.get('/', (req, res) => {
+//     res.send({ 'name': 'senay' });
+// })
 
-app.listen(port, () => {
-    console.log(`Listening port ${port}`)
-})
+// app.listen(port, () => {
+//     console.log(`Listening port ${port}`)
+// })
 
 // 2 Nuestra app almacenará la información en un fichero llamado users.json, la información tendrá la
 // siguiente estructura { id: 1, name: xxx, lastname: xxx, username: xxx, country: xxx, img: xxx }
+
+import express from 'express';
+import { v4 as uuidv4 } from 'uuid';
+import fs from 'fs/promises';
+import { readFileSync, writeFileSync, mkdirSync, accessSync, constants } from 'fs';
+
+const FILE_PATH = './data/users.json';
+const app = express();
+const port = 4000;
+app.use(express.json()); // esto procesa el body en formato JSON y asi lo puedo leer en la request
+
+// inicializar el archivo si NO existe
+try {
+    accessSync(FILE_PATH, constants.R_OK | constants.W_OK);
+} catch (err) {
+    console.warn('Error al acceder al archivo: ', err);
+    console.warn('Creando un archivo con un array de productos vacio...');
+    mkdirSync('data');
+    writeFileSync(FILE_PATH, '[]');
+}
+
+const users = JSON.parse(readFileSync(FILE_PATH, { encoding: 'utf8' }));
+
+
+app.get('/users', (req, res) => res.json(users));
+
+app.post('/users', async (req, res) => {
+    //1. proceso el body (gracias al express.json()) req.body NO es undefined
+    if (typeof req.body.name == 'number') {
+        res.status(400).json({ error: 'El precio debe ser un número' });
+    } else {
+        //2. creo un nuevo producto
+        const id = uuidv4();
+        const userInfo = {
+            ...req.body,
+            id // esto es lo mismo que poner id:id
+        }
+        //3. añado el producto al array
+        users.push(userInfo);
+        await fs.writeFile(FILE_PATH, JSON.stringify(users));
+        //4. devolver el userInfo creado
+        res.json(userInfo);
+    }
+})
+
+
+
+const server = app.listen(port, () => {
+    console.log(`Servidor escuchan en el puerto ${port}`);
+});
