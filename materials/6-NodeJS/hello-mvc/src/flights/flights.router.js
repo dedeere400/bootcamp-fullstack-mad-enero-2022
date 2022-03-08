@@ -1,5 +1,5 @@
 import express from 'express';
-import {getFlightsCtrl, getFlightByIdCtrl} from './flights.controller';
+import { getFlightsCtrl, getFlightByIdCtrl } from './flights.controller';
 
 const router = express.router();
 
@@ -11,3 +11,4 @@ router.route('/:id')
 
 
 export default router;
+
