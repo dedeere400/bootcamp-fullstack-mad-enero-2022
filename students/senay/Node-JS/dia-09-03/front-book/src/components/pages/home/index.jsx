@@ -20,7 +20,7 @@ function Home() {
     return (
         <section className="containerHome">
             <h2 className="text-center">Best Seller Books</h2>
-            <Container className="d-flex justify-content-around">
+            <Container className="d-flex flex-wrap justify-content-around">
                 {books.length === 0 ? <h2>cargando</h2> : books.map((a, i) => {
                     return <Cards book={a} key={i}></Cards>
                 }

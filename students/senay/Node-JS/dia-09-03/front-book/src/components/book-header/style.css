@@ -1,5 +1,7 @@
 .headerContainer {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 2rem;
   gap: 2rem;
   background-color: #dfdfdf;
@@ -20,4 +22,7 @@
   background-color: #009600;
   color: white;
   width: 160px;
+}
+.containerLeft {
+  max-width: 400px;
 }

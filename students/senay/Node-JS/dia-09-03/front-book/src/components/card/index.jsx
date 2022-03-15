@@ -6,13 +6,11 @@ import './style.css';
 function Cards(props) {
     // console.log(props.book)
 
-    const onUserClick = () => {
 
-    }
 
     return (
         <Link to={`detaills/${props.book.ISBN}`} >
-            <Card style={{ width: '18rem' }} onClick={onUserClick}>
+            <Card style={{ width: '18rem' }}>
                 <Card.Img src={props.book.img} />
 
                 <ListGroup className='titlePrize'>
